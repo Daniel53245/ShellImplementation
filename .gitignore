@@ -1,0 +1,8 @@
+anubis/anubis
+anubis/tests-out/*
+anubis/build/*.o
+anubis/_deps/*
+anubis/test_build/*
+anubis/*.o
+.vscode/*
+.vscode/settings.json

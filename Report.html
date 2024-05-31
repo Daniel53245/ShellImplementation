@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Report.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="report-of-comp3300-ass">Report of Comp3300 Ass</h1>
+<h2 id="overview">Overview</h2>
+<p>In this assignment, I implemented the Anubis programmes
+which is an interactive command line program that supports various features that are in a regular Linux terminal/bash.</p>
+<p>This report will briefly mention some details about the programme's implementation.</p>
+<h2 id="featurese">Featurese</h2>
+<h3 id="built-in-command-path">built-in command: path</h3>
+<p>Usage: path &lt;serachfolder&gt; | ...</p>
+<p>The path command takes multiple input and sets the search path(where anubis look for executable fields) to the input.</p>
+<p><img src="img/path_demo.png" alt="Exampe of path variable"></p>
+<h3 id="built-in-command-cd">built-in command: cd</h3>
+<p>Usage: cd &lt;directory&gt;</p>
+<p>Change the working directory of the programme.
+<img src="img/cd_demo.png" alt="Cd demo"></p>
+<h3 id="built-in-command-exit">built-in command: exit</h3>
+<p>Usage: exit the anubis programme</p>
+<p><img src="img/cd_demo.png" alt="exit_demo"></p>
+<h3 id="batch-mode">Batch mode</h3>
+<p>The program can accept a file containing lines of instruction and execute the commands line by line inside the file
+<img src="img/demo_batch_mode.png" alt="Exampe of batch mode"></p>
+<h3 id="parallelism">Parallelism</h3>
+<p>The anubis offers options to the user to run the commands in parallel using the special symbol &quot;&amp;&quot;.</p>
+<p><strong>cmd1 args1 &amp; cmd2 args2</strong> will allow cmd1 and cmd2 to be executed in parallel(there is no guranteen that cmd2 is going to be executed after cmd1 but due to operation in praparing starting of processes cmd2 is likey to start after cmd1)</p>
+<h3 id="pipes">Pipes</h3>
+<p>The anubis programme allows the user to redirect the stdout of a program to the stdin of another program using <strong>&quot;|&quot;</strong>. For example, <strong>&quot;ls | wc&quot;</strong> would show the word count of the ls command output.</p>
+<p><img src="img/pipe_list_demo.png" alt="pipe_line_demo"></p>
+<p>The number of programs that the usr could chain up does not have a limit. Users could chain up multiple programs using pipe symbols.</p>
+<p><img src="img/pip3_multiple_demo.png" alt="pipe_multi_demo"></p>
+<h3 id="output-redirection">Output Redirection</h3>
+<p>Usage: [programme] &gt; [target file]</p>
+<p>The anubis program allows the user to redirect the stdout of programs to a
+file in the file system. If the target file is not found, anubis will create the corresponding file.</p>
+<p><img src="img/redir_demoe.png" alt="redir_demo"></p>
+<h3 id="precedence-of-execution">Precedence of execution</h3>
+<p>A line of command in anubis would follow the following grammar of precedence.</p>
+<p>command_exp := name_of_bin and arguments</p>
+<p>redir_exp := pipe_exp | pipe_exp &gt; file_name</p>
+<p>pipe_exp := command_exp / command_exp | pipe_exp</p>
+<p>parallel_exp := redir_exp | redir_exp &amp; parallel_exp</p>
+<h2 id="implementation-details--documentation">Implementation details &amp; documentation</h2>
+<h3 id="anubisc">Anubis.c</h3>
+<p>Anubis.c contains the programme's main function and is responsible for <em>setup initial data structures</em>, <em>reading user input</em>, and <em>calling the corresponding function</em> to process the user input.</p>
+<h4 id="data-structures">Data structures</h4>
+<p><img src="img/anubis_setup_datasutrcutres.png" alt="Seupt data strcutre "></p>
+<p>It initialises the path_list and sets the stdin of the anubis program. This set of input_file allows the anubis to read commands from a file and run in batch mode.</p>
+<h4 id="command-linefile-input">Command line/File input</h4>
+<p><img src="img/anubis_input_handle.png" alt="anubis input handel"></p>
+<p>As shown above, the anubis program uses a 'getline()' inside the while loop to consume all the input in the stdin or input file. The program exits when there are <em>no more lines to read, receiving an empty string or EOF symbol</em></p>
+<h4 id="built-in-command-execution">Built-in Command Execution</h4>
+<p>After reading the input line, the anubis program will check for built-in commands and attempt to execute them. (Consider not using the same name as the built-in command as file name/programme name as that would confuse the program.)</p>
+<p><img src="img/anubis_builtin_support.png" alt="aubis_builtin_detect"></p>
+<p>After successfully finding the built-in command in the input's first place,  commands will be executed with <em>execute_built_in</em> function. The documentation of the <em>execute_built_in</em> is as follows(errors will be handled inside the function).</p>
+<p><img src="img/anubis_execute_built_in.png" alt="anubis_execute_built_in"></p>
+<h4 id="tokenising">Tokenising</h4>
+<p>After checking for built-in commands, the anubis program will view the input as a line of command that needs to be processed. The first step is tokenising the input string.
+<img src="img/anubis_tokenise.png" alt="anubis_tokenise_input">
+For further details about tokenising, please check tokerniser.c</p>
+<h4 id="parsing">Parsing</h4>
+<p>After the call to tokenise the string, the main would parse the command into an expression that allows precedence between symbols to be processd
+<img src="img/anubis-call-parse.png" alt="anubis-call-parse">
+For further details about the parsing process, please check parser.c</p>
+<h3 id="tokerniserc">Tokerniser.c</h3>
+<p>This file contains code related to the tokenisation of commands and strings.</p>
+<h4 id="partitioning-string">Partitioning String</h4>
+<p><img src="img/str_partition.png" alt="partiton string">
+The string pattern is the first step of tokenising the string. The str_partition function divides the string by empty spaces and the special symbols so that they can be tokenised into tokens.</p>
+<h4 id="tokenisestr">Tokenise_str</h4>
+<p><img src="img/tokenis_str.png" alt="tokenise_str">
+The tokenise_str utilises the partition string function. Construct <em>Token</em> out of the substring and return in <em>Node</em>(which is a linked list defined in utils.c)</p>
+<h3 id="parserc">Parser.c</h3>
+<p>As mentioned, the anubis assumes the incoming command is in the form of the below grammar.</p>
+<p>command_exp := name_of_bin and arguments</p>
+<p>redir_exp := pipe_exp | pipe_exp &gt; file_name</p>
+<p>pipe_exp := command_exp / command_exp | pipe_exp</p>
+<p>parallel_exp := redir_exp | redir_exp &amp; parallel_exp</p>
+<p>Parser.c contains functions and data structures related to parsing a linked list of tokens.</p>
+<p><img src="img/data_structs.png" alt="exp_data_structures"></p>
+<p>In parsing a command, <em>parse_parallel</em> is executed on the list of input tokens. It will let <em>parse_redir</em> consume tokens until encountering a <em>&quot;&amp;&quot;</em>. Parse rider saves the result of parse_redir and, based on the preceding symbole, constructs next <em>parallel_exp</em>.</p>
+<p>The <em>parse_redir</em> and <em>parse_pipe</em> adapt similar structure to the <em>parse_paraallel</em></p>
+<h3 id="processmanagerc">process_manager.c</h3>
+<p>The process_manager contains functions and data structures related to forking and executing expressions.</p>
+<p><img src="img/execute_parallel.png" alt="execute-parallel"></p>
+<p>Similar to the parse, the execution of the command is also in a hierarchical structure.</p>
+<p>Recall that a <em>parallel_exp</em> contains a redir_exp or an optional link to the following <em>parallel_exp</em>. In executing, the process would call <em>fork()</em> for each redir_exp and let the child process call <em>execute_redirection()</em> to execute all commands.</p>
+
+</body>
+</html>
